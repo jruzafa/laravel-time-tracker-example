@@ -17,4 +17,24 @@ Route::get('/', array('before' => 'auth', function()
 }));
 
 
-Route::get('/login', array('uses' => 'UserController@login'));
+Route::get('/login', array('before' => 'guest', 'uses' => 'UserController@login'));
+
+Route::post('login', function(){
+
+    $userData = array(
+        'email' => Input::get('email'),
+        'password' => Input::get('password')
+    );
+
+    if ( Auth::attempt($userData) ){
+        return Redirect::to('/');
+    }else{
+        return Redirect::to('login')->with('login_errors', true);
+    }
+
+});
+
+Route::get('/dashboard', array('before' => 'auth', function(){
+
+	return View::make('dashboard');
+}));
