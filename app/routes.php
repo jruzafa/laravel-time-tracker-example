@@ -11,7 +11,10 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array('before' => 'auth', function()
 {
 	return View::make('hello');
-});
+}));
+
+
+Route::get('/login', array('uses' => 'UserController@login'));
