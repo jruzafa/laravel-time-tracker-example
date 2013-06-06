@@ -4,3 +4,4 @@ composer.lock
 
 app/storage/cache/*
 app/storage/logs/*
+.idea/
