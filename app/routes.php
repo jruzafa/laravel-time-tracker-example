@@ -19,7 +19,7 @@ Route::get('/', array('before' => 'auth', function()
 
 Route::get('/login', array('before' => 'guest', 'uses' => 'UserController@login'));
 
-Route::post('login', function(){
+Route::post('login',array('before' => 'guest', 'do' => function(){
 
     $userData = array(
         'email' => Input::get('email'),
@@ -32,9 +32,36 @@ Route::post('login', function(){
         return Redirect::to('login')->with('login_errors', true);
     }
 
-});
+}));
 
-Route::get('/dashboard', array('before' => 'auth', function(){
+Route::get('/projects', array('before' => 'auth', 'do' => function(){
 
-	return View::make('dashboard');
+	 $projects = Project::all();
+     // print_r($projects);
+
+     // exit();
+
+
+    return View::make('projects')->with('projects', $projects);
+}));
+
+Route::post('/projects', array('before' => 'auth', 'do' => function(){
+
+
+    $validator = Validator::make(
+        array('name' => Input::get('name')),
+        array('name' => 'required|min:5')
+    );
+
+    if ($validator->fails())
+    {
+        return Redirect::to('/projects')->withErrors($validator);
+    }else{
+
+        Project::create(array('name' => Input::get('name'),'user_id' => 1, 'active' => 1));
+    }
+
+    $projects = Project::all();
+
+    return View::make('projects')->with('projects', $projects);
 }));
