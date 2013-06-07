@@ -26,3 +26,13 @@
 	margin-bottom: 15px;
 	padding: 7px 9px;
 }
+
+
+/*
+	Structure
+ */
+
+.container-content{
+	max-width: 960px;
+	margin: 0 auto;
+}
