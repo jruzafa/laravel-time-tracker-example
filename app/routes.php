@@ -34,16 +34,7 @@ Route::post('login',array('before' => 'guest', 'do' => function(){
 
 }));
 
-Route::get('/projects', array('before' => 'auth', 'do' => function(){
-
-	 $projects = Project::all();
-     // print_r($projects);
-
-     // exit();
-
-
-    return View::make('projects')->with('projects', $projects);
-}));
+Route::get('/projects', array('as' => 'projects', 'before' => 'auth', 'uses' => 'ProjectController@index'));
 
 Route::post('/projects', array('before' => 'auth', 'do' => function(){
 
