@@ -21,28 +21,22 @@ class ProjectController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
-	}
+		$validator = Validator::make(
+			array('name' => Input::get('name')),
+			array('name' => 'required|min:5')
+			);
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+		if ($validator->fails())
+		{
+			return Redirect::to('/projects')->withErrors($validator);
+		}else{
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
+			Project::create(array('name' => Input::get('name'),'user_id' => 1, 'active' => 1));
+		}
+
+		$projects = Project::all();
+
+		return View::make('projects')->with('projects', $projects);
 	}
 
 	/**
