@@ -22,13 +22,28 @@
     </head>
     <body>
 
-        <div class="container-fluid">
-
-            <div class="row-fluid">
-                @yield('content')
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">Time Tracker</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Dashboard</a></li>
+                            <li><a href="#about">Time</a></li>
+                            <li><a href="#contact">Projects</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
             </div>
+        </div>
 
-
+        <div class="container-fluid container-content">
+            @yield('content')
         </div> <!-- /container -->
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
