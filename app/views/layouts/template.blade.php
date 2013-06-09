@@ -35,7 +35,7 @@
                         <ul class="nav">
                             @if (Auth::user())
                                 <li class="active"><a href="#">Dashboard</a></li>
-                                <li><a href="#about">Time</a></li>
+                                <li>{{ HTML::linkRoute('time_entries','Time Entries') }}</li>
                                 <li>{{ HTML::linkRoute('projects','Projects') }}</li>
                                 <li>{{ HTML::link('logout', 'Logout') }}</li>
                             @else
