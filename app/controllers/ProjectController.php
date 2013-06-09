@@ -31,7 +31,7 @@ class ProjectController extends \BaseController {
 			return Redirect::to('/projects')->withErrors($validator);
 		}else{
 
-			Project::create(array('name' => Input::get('name'),'user_id' => 1, 'active' => 1));
+			Project::create(array('name' => Input::get('name'),'user_id' => Auth::user()->id, 'active' => 1));
 		}
 
 		$projects = Project::all();
