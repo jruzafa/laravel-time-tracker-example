@@ -33,9 +33,14 @@
                     <a class="brand" href="#">Time Tracker</a>
                     <div class="nav-collapse collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Dashboard</a></li>
-                            <li><a href="#about">Time</a></li>
-                            <li><a href="#contact">Projects</a></li>
+                            @if (Auth::user())
+                                <li class="active"><a href="#">Dashboard</a></li>
+                                <li><a href="#about">Time</a></li>
+                                <li>{{ HTML::linkRoute('projects','Projects') }}</li>
+                                <li>{{ HTML::link('logout', 'Logout') }}</li>
+                            @else
+                                <li>{{ HTML::linkRoute('login','Login') }}</li>
+                            @endif
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
