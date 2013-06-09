@@ -17,6 +17,7 @@ Route::get('/', array('before' => 'auth', function()
 	return View::make('hello');
 }));
 
+Route::get('/time-entries',array('as' => 'time_entries', 'before' => 'auth', 'uses' => 'TimeController@index'));
 
 Route::get('/login', array('as' => 'login', 'before' => 'guest', 'uses' => 'UserController@login'));
 Route::get('/logout', array('as' => 'logout', 'before' => 'auth', 'do' => function(){
