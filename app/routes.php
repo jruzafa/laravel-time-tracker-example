@@ -18,7 +18,11 @@ Route::get('/', array('before' => 'auth', function()
 }));
 
 
-Route::get('/login', array('before' => 'guest', 'uses' => 'UserController@login'));
+Route::get('/login', array('as' => 'login', 'before' => 'guest', 'uses' => 'UserController@login'));
+Route::get('/logout', array('as' => 'logout', 'before' => 'auth', 'do' => function(){
+    Auth::logout();
+    return Redirect::to('/');
+}));
 
 Route::post('login',array('before' => 'guest', 'do' => function(){
 
