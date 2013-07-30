@@ -18,6 +18,7 @@ Route::get('/', array('before' => 'auth', function()
 }));
 
 Route::get('/time-entries',array('as' => 'time_entries', 'before' => 'auth', 'uses' => 'TimeController@index'));
+Route::post('/time-entries',array('before' => 'auth', 'uses' => 'TimeController@create'));
 
 Route::get('/login', array('as' => 'login', 'before' => 'guest', 'uses' => 'UserController@login'));
 Route::get('/logout', array('as' => 'logout', 'before' => 'auth', 'do' => function(){
