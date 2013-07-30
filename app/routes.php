@@ -34,7 +34,7 @@ Route::post('login',array('before' => 'guest', 'do' => function(){
     );
 
     if ( Auth::attempt($userData) ){
-        return Redirect::to('/');
+        return Redirect::to('dashboard');
     }else{
         return Redirect::to('login')->with('login_errors', true);
     }
@@ -44,5 +44,4 @@ Route::post('login',array('before' => 'guest', 'do' => function(){
 // Projects routes
 Route::get('/projects', array('as' => 'projects', 'before' => 'auth', 'uses' => 'ProjectController@index'));
 Route::post('/projects', array('before' => 'auth', 'uses' => 'ProjectController@create'));
-
 Route::get('/dashboard', array('as' => 'dashboard', 'before' => 'auth', 'uses' => 'DashboardController@index'));
