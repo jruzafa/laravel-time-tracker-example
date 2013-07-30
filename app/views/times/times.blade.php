@@ -2,6 +2,23 @@
 
 @section('content')
 
+    @if (Session::has('errors'))
+        <div class="row-fluid">
+            <div class="span12">
+                <span class="error">Username or password incorrect.</span>
+            </div>
+        </div>
+            @foreach ($errors as $message)
+
+            {{ $message }}
+
+
+            @endforeach
+    @endif
+
+
+
+@include('times.new')
 
 	@if (count($times) > 0)
 
@@ -10,7 +27,7 @@
 				<table class="table table-hover span5">
 					<thead>
 						<tr>
-							<th>Name</th>
+							<th>Task</th>
 							<th>Hours</th>
 						</tr>
 					</thead>
@@ -18,7 +35,7 @@
 						@foreach ($times as $time)
 							<tr>
 								<td>{{ $time->name }}</td>
-								<td>0</td>
+                                <td>{{ $time->hours }}</td>
 							</tr>
 						@endforeach
 					</tbody>
