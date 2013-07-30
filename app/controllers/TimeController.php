@@ -9,9 +9,11 @@ class TimeController extends BaseController {
 	 */
 	public function index()
 	{
-	    $times = Time::all();
+        $times = Time::where('user_id', Auth::user()->id )->get();
 
-        return View::make('times')->with('times', $times);
+        $projects = Project::where('user_id', Auth::user()->id )->lists('name', 'id');
+
+        return View::make('times.times')->with(array('times' => $times, 'projects' => $projects));
 	}
 
 	/**
@@ -21,7 +23,29 @@ class TimeController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+        $validator = Validator::make(
+            array('name' => Input::get('name'), 'hours' => Input::get('hours')),
+            array('name' => 'required|min:5','hours' => 'required|min:1|between:0,24|alpha_dash')
+        );
+
+        if ($validator->fails())
+        {
+            return Redirect::to('/time-entries')->withErrors($validator);
+        }else{
+
+            Time::create(
+                array(
+                            'name' => Input::get('name'),
+                            'project_id'  => Input::get('project'),
+                            'hours'       => Input::get('hours'),
+                            'user_id'     => Auth::user()->id
+                )
+            );
+        }
+        $projects = Project::where('user_id', Auth::user()->id)->lists('name', 'id');
+        $times = Time::where('user_id', Auth::user()->id)->get();
+
+        return View::make('times.times')->with(array('times' => $times, 'projects' => $projects));
 	}
 
 	/**
