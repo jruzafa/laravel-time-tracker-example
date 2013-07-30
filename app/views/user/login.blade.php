@@ -9,7 +9,7 @@
 
 		<h2 class="form-signin-heading">Please sign in</h2>
         <p>pass: "password"</p>
-		{{ Form::text('email','', array('class' => 'input-block-level', 'placeholder' => 'Email address')) }}
+		{{ Form::text('email','jose.ruzafa@gmail.com', array('class' => 'input-block-level', 'placeholder' => 'Email address')) }}
 		{{ Form::password('password',array('class' => 'input-block-level', 'placeholder' => 'Password')) }}
 		<label class="checkbox">
 			<input type="checkbox" value="remember-me"> Remember me
