@@ -44,3 +44,5 @@ Route::post('login',array('before' => 'guest', 'do' => function(){
 // Projects routes
 Route::get('/projects', array('as' => 'projects', 'before' => 'auth', 'uses' => 'ProjectController@index'));
 Route::post('/projects', array('before' => 'auth', 'uses' => 'ProjectController@create'));
+
+Route::get('/dashboard', array('as' => 'dashboard', 'before' => 'auth', 'uses' => 'DashboardController@index'));
