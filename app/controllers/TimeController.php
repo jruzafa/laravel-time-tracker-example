@@ -13,7 +13,7 @@ class TimeController extends BaseController {
 
         $projects = Project::where('user_id', Auth::user()->id )->lists('name', 'id');
 
-        return View::make('times.times')->with(array('times' => $times, 'projects' => $projects));
+        return View::make('times.index')->with(array('times' => $times, 'projects' => $projects));
 	}
 
 	/**
@@ -45,7 +45,7 @@ class TimeController extends BaseController {
         $projects = Project::where('user_id', Auth::user()->id)->lists('name', 'id');
         $times = Time::where('user_id', Auth::user()->id)->get();
 
-        return View::make('times.times')->with(array('times' => $times, 'projects' => $projects));
+        return View::make('times.index')->with(array('times' => $times, 'projects' => $projects));
 	}
 
 	/**
