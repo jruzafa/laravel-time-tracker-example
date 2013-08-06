@@ -2,22 +2,6 @@
 
 @section('content')
 
-    @if (Session::has('errors'))
-        <div class="row-fluid">
-            <div class="span12">
-                <span class="error">Username or password incorrect.</span>
-            </div>
-        </div>
-            @foreach ($errors as $message)
-
-            {{ $message }}
-
-
-            @endforeach
-    @endif
-
-
-
 @include('times.new')
 
 	@if (count($times) > 0)
